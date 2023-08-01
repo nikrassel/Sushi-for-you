@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Набор 'Плотный обед'",
+    "price": 1500,
+    "image": "/img/set_1.jpg",
+    "types": [0],
+    "id": "01"
+  },
+  {
+    "title": "Набор 'Ассортимент'",
+    "price": 1000,
+    "image": "/img/set_2.jpg",
+    "types": [0, 1],
+    "id": "02"
+  },
+  {
+    "title": "Филадельфия",
+    "price": 600,
+    "image": "/img/set_3.jpg",
+    "types": [0, 1],
+    "number": [4, 6, 8],
+    "id": "03"
+  }
+]

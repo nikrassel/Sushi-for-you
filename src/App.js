@@ -3,13 +3,9 @@ import Header from "./components/Header";
 import Categories from "./components/Categories";
 import Sorting from "./components/Sorting";
 import PositionBlock from "./components/PositionBlock";
+import menu from "./assets/menu.json";
 
 function App() {
-  const dishArray = [
-    { title: "Набор 'Плотный обед'", price: 1500, image: "/img/set_1.jpg" },
-    { title: "Набор 'Ассортимент'", price: 1000, image: "/img/set_2.jpg" },
-    { title: "Филадельфия", price: 600, image: "/img/set_3.jpg" },
-  ];
   return (
     <div className="wrapper">
       <Header />
@@ -21,11 +17,14 @@ function App() {
           </div>
           <h2 className="content__title">Все меню</h2>
           <div className="content__items">
-            {dishArray.map((elem) => (
+            {menu.map((elem) => (
               <PositionBlock
                 title={elem.title}
                 price={elem.price}
                 imageSource={elem.image}
+                key={elem.id}
+                numberVars={elem.number ? elem.number : undefined}
+                types={elem.types}
               />
             ))}
           </div>

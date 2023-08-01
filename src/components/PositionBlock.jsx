@@ -1,25 +1,50 @@
-import React from "react";
+import React, { useState } from "react";
 
-const PositionBlock = ({ title, price, imageSource }) => {
+const PositionBlock = ({ title, price, imageSource, types, numberVars }) => {
+  const [count, setCount] = useState(0);
+  const [activeType, setActiveType] = useState(0);
+  const [activeSize, setActiveSize] = useState(0);
+  const typeNames = ["стандартный", "острый"];
+  function addCount() {
+    setCount(count + 1);
+  }
   return (
     <>
       <div className="dish-block">
         <img className="dish-block__image" src={imageSource} alt="dish" />
         <h4 className="dish-block__title">{title}</h4>
-        {/* <div className="dish-block__selector">
+        <div className="dish-block__selector">
           <ul>
-            <li className="active"></li>
-            <li></li>
+            {types.map((type) => (
+              <li
+                className={activeType === type ? "active" : ""}
+                key={type}
+                onClick={() => setActiveType(type)}
+              >
+                {typeNames[type]}
+              </li>
+            ))}
           </ul>
-          <ul>
-            <li className="active"></li>
-            <li></li>
-            <li></li>
-          </ul>
-        </div> */}
+          {numberVars && (
+            <ul>
+              {numberVars.map((elem, i) => (
+                <li
+                  className={activeSize === i ? "active" : ""}
+                  key={i}
+                  onClick={() => setActiveSize(i)}
+                >
+                  {elem} шт.
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
         <div className="dish-block__bottom">
           <div className="dish-block__price">от {price} ₽</div>
-          <div className="button button--outline button--add">
+          <button
+            className="button button--outline button--add"
+            onClick={addCount}
+          >
             <svg
               width="12"
               height="12"
@@ -33,8 +58,8 @@ const PositionBlock = ({ title, price, imageSource }) => {
               />
             </svg>
             <span>Добавить</span>
-            <i>2</i>
-          </div>
+            <i>{count}</i>
+          </button>
         </div>
       </div>{" "}
     </>
