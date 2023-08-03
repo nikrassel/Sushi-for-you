@@ -1,19 +1,22 @@
 import React from "react";
 import shopLogo from "../assets/img/shop_logo.jpg";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className="header">
       <div className="container">
-        <div className="header__logo">
-          <img width="38" src={shopLogo} alt="Shop logo" />
-          <div>
-            <h1>Sushi For You</h1>
-            <p>самые вкусные суши во вселенной</p>
+        <Link to={"/"}>
+          <div className="header__logo">
+            <img width="38" src={shopLogo} alt="Shop logo" />
+            <div>
+              <h1>Sushi For You</h1>
+              <p>самые вкусные суши во вселенной</p>
+            </div>
           </div>
-        </div>
+        </Link>
         <div className="header__cart">
-          <a href="/cart.html" className="button button--cart">
+          <Link to={"/cart"} className="button button--cart">
             <span>520 ₽</span>
             <div className="button__delimiter"></div>
             <svg
@@ -46,7 +49,7 @@ const Header = () => {
               />
             </svg>
             <span>3</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>

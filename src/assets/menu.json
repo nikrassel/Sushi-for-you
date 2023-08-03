@@ -1,24 +1,68 @@
 [
   {
+    "id": "01",
     "title": "Набор 'Плотный обед'",
     "price": 1500,
-    "image": "/img/set_1.jpg",
+    "image": "/img/item_1.jpg",
     "types": [0],
-    "id": "01"
+    "category": ["Наборы"],
+    "rating": 5
   },
   {
+    "id": "02",
     "title": "Набор 'Ассортимент'",
     "price": 1000,
-    "image": "/img/set_2.jpg",
+    "image": "/img/item_2.jpg",
     "types": [0, 1],
-    "id": "02"
+    "category": ["Наборы"],
+    "rating": 4
   },
   {
+    "id": "03",
     "title": "Филадельфия",
-    "price": 600,
-    "image": "/img/set_3.jpg",
+    "price": 300,
+    "image": "/img/item_3.jpg",
     "types": [0, 1],
     "number": [4, 6, 8],
-    "id": "03"
+    "category": ["С лососем"],
+    "rating": 5
+  },
+  {
+    "id": "04",
+    "title": "Эби",
+    "price": 600,
+    "image": "/img/item_4.jpg",
+    "types": [0, 1],
+    "number": [4, 6, 8],
+    "category": ["С креветкой"],
+    "rating": 5
+  },
+  {
+    "id": "05",
+    "title": "Малый дракон",
+    "price": 500,
+    "image": "/img/item_5.jpg",
+    "types": [0, 1],
+    "number": [4, 6, 8],
+    "category": ["С угрем"],
+    "rating": 5
+  },
+  {
+    "id": "06",
+    "title": "Чаепитие в Филадельфии",
+    "price": 2000,
+    "image": "/img/item_6.jpg",
+    "types": [0],
+    "category": ["Наборы"],
+    "rating": 4
+  },
+  {
+    "id": "07",
+    "title": "Темпура",
+    "price": 450,
+    "image": "/img/item_7.jpg",
+    "types": [0, 1],
+    "category": ["Запеченые"],
+    "rating": 3
   }
 ]
