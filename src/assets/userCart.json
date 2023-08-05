@@ -1,0 +1,35 @@
+[
+  {
+    "id": "03",
+    "title": "Филадельфия",
+    "price": 300,
+    "image": "/img/item_3.jpg",
+    "types": [0, 1],
+    "number": [4, 6, 8],
+    "category": ["С лососем"],
+    "rating": 5,
+    "quantity": 1
+  },
+  {
+    "id": "04",
+    "title": "Эби",
+    "price": 600,
+    "image": "/img/item_4.jpg",
+    "types": [0, 1],
+    "number": [4, 6, 8],
+    "category": ["С креветкой"],
+    "rating": 5,
+    "quantity": 1
+  },
+  {
+    "id": "05",
+    "title": "Малый дракон",
+    "price": 500,
+    "image": "/img/item_5.jpg",
+    "types": [0, 1],
+    "number": [4, 6, 8],
+    "category": ["С угрем"],
+    "rating": 5,
+    "quantity": 1
+  }
+]

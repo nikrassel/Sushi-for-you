@@ -8,6 +8,7 @@ const Home = () => {
   const [menu, setMenu] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   React.useEffect(() => {
+    window.scrollTo(0, 0);
     fetch("https://64cb863e700d50e3c7060c63.mockapi.io/items")
       .then((res) => {
         return res.json();

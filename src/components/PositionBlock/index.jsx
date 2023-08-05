@@ -9,7 +9,7 @@ const PositionBlock = ({ title, price, imageSource, types, numberVars }) => {
     setCount(count + 1);
   }
   return (
-    <>
+    <div className="dish-block-wrapper">
       <div className="dish-block">
         <img className="dish-block__image" src={imageSource} alt="dish" />
         <h4 className="dish-block__title">{title}</h4>
@@ -62,7 +62,7 @@ const PositionBlock = ({ title, price, imageSource, types, numberVars }) => {
           </button>
         </div>
       </div>{" "}
-    </>
+    </div>
   );
 };
 
