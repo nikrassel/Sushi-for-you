@@ -3,8 +3,9 @@ import Categories from "../components/Categories";
 import Sorting from "../components/Sorting";
 import PositionBlock from "../components/PositionBlock";
 import Skeleton from "../components/PositionBlock/skeleton";
+import Pagination from "../components/Pagination";
 
-const Home = () => {
+const Home = ({ searchValue }) => {
   const [menu, setMenu] = React.useState([]);
   const [activeCategory, setActiveCategory] = React.useState({
     name: "Все",
@@ -16,11 +17,15 @@ const Home = () => {
   });
   const [sortOrder, setSortOrder] = React.useState("asc");
   const [isLoading, setIsLoading] = React.useState(true);
+  const [currentPage, setCurrentPage] = React.useState(1);
   React.useEffect(() => {
     setIsLoading(true);
-    let baseUrl = `https://64cb863e700d50e3c7060c63.mockapi.io/items?sortBy=${selectedSort.property}&order=${sortOrder}`;
+    let baseUrl = `https://64cb863e700d50e3c7060c63.mockapi.io/items?page=${currentPage}&limit=6&sortBy=${selectedSort.property}&order=${sortOrder}`;
     if (activeCategory.id > 0) {
-      baseUrl += `&search=${activeCategory.name}`;
+      baseUrl += `&category=${activeCategory.name}`;
+    }
+    if (searchValue) {
+      baseUrl += `&search=${searchValue}`;
     }
     window.scrollTo(0, 0);
     fetch(baseUrl)
@@ -31,7 +36,13 @@ const Home = () => {
         setMenu(response);
         setIsLoading(false);
       });
-  }, [activeCategory, selectedSort, sortOrder]);
+  }, [activeCategory, selectedSort, sortOrder, searchValue, currentPage]);
+  // const filtredMenu = menu.filter((elem) => {
+  //   if (elem.title.toLowerCase().includes(searchValue.toLowerCase())) {
+  //     return true;
+  //   }
+  //   return false;
+  // });
   return (
     <>
       <div className="content__top">
@@ -61,6 +72,7 @@ const Home = () => {
               />
             ))}
       </div>
+      <Pagination changePage={(number) => setCurrentPage(number)} />
     </>
   );
 };
