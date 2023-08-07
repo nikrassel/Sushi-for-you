@@ -1,23 +1,15 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { changeSortingType, changeSortOrder } from "../redux/sortSlice";
 
-const Sorting = ({ selectedSort, changeSort, sortOrder, changeOrder }) => {
+const Sorting = () => {
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-  // const [selectedSort, setSort] = React.useState(2);
-  const sortType = [
-    { title: "популярности", property: "rating" },
-    { title: "цене", property: "price" },
-    { title: "алфавиту", property: "title" },
-  ];
-  function changeSortType(type) {
-    changeSort(type);
+  const sortTypes = useSelector((state) => state.sorting.allTypes);
+  const activeType = useSelector((state) => state.sorting.activeType);
+  function changeSort(type) {
+    dispatch(changeSortingType(type));
     setOpen(false);
-  }
-  function changeSortOrder() {
-    if (sortOrder === "asc") {
-      changeOrder("desc");
-    } else {
-      changeOrder("asc");
-    }
   }
   return (
     <div className="sort">
@@ -28,7 +20,7 @@ const Sorting = ({ selectedSort, changeSort, sortOrder, changeOrder }) => {
           viewBox="0 0 10 6"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          onClick={() => changeSortOrder()}
+          onClick={() => dispatch(changeSortOrder())}
           cursor="pointer"
         >
           <path
@@ -37,17 +29,17 @@ const Sorting = ({ selectedSort, changeSort, sortOrder, changeOrder }) => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpen(!open)}>{selectedSort.title}</span>
+        <span onClick={() => setOpen(!open)}>{activeType.title}</span>
       </div>
       {open && (
         <div className="sort__popup">
           <ul>
-            {sortType.map((type, i) => (
+            {sortTypes.map((type, i) => (
               <li
                 className={
-                  selectedSort.property === type.property ? "active" : ""
+                  activeType.property === type.property ? "active" : ""
                 }
-                onClick={() => changeSortType(type)}
+                onClick={() => changeSort(type)}
                 key={i}
               >
                 {type.title}

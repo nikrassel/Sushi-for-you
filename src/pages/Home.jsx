@@ -1,21 +1,18 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Categories from "../components/Categories";
 import Sorting from "../components/Sorting";
 import PositionBlock from "../components/PositionBlock";
 import Skeleton from "../components/PositionBlock/skeleton";
 import Pagination from "../components/Pagination";
+import { SearchContext } from "../App";
 
-const Home = ({ searchValue }) => {
+const Home = () => {
+  const { searchValue } = React.useContext(SearchContext);
   const [menu, setMenu] = React.useState([]);
-  const [activeCategory, setActiveCategory] = React.useState({
-    name: "Все",
-    id: 0,
-  });
-  const [selectedSort, setSort] = React.useState({
-    title: "алфавиту",
-    property: "title",
-  });
-  const [sortOrder, setSortOrder] = React.useState("asc");
+  const activeCategory = useSelector((state) => state.filter.activeCategory);
+  const selectedSort = useSelector((state) => state.sorting.activeType);
+  const sortOrder = useSelector((state) => state.sorting.sortOrder);
   const [isLoading, setIsLoading] = React.useState(true);
   const [currentPage, setCurrentPage] = React.useState(1);
   React.useEffect(() => {
@@ -46,16 +43,8 @@ const Home = ({ searchValue }) => {
   return (
     <>
       <div className="content__top">
-        <Categories
-          activeCategory={activeCategory}
-          changeCategory={(category) => setActiveCategory(category)}
-        />
-        <Sorting
-          selectedSort={selectedSort}
-          changeSort={setSort}
-          sortOrder={sortOrder}
-          changeOrder={setSortOrder}
-        />
+        <Categories />
+        <Sorting />
       </div>
       <h2 className="content__title">Все меню</h2>
       <div className="content__items">
