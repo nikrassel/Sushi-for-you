@@ -10,6 +10,17 @@ const initialState = {
     { name: "Запечёные", id: 4 },
     { name: "Наборы", id: 5 },
   ],
+  activeType: {
+    title: "алфавиту",
+    property: "title",
+  },
+  allTypes: [
+    { title: "популярности", property: "rating" },
+    { title: "цене", property: "price" },
+    { title: "алфавиту", property: "title" },
+  ],
+  sortOrder: "asc",
+  currentPage: 1,
 };
 
 export const filterSlice = createSlice({
@@ -19,19 +30,27 @@ export const filterSlice = createSlice({
     changeCategory: (state, action) => {
       state.activeCategory = action.payload;
     },
-    increment: (state) => {
-      state.value += 1;
+    changeSortingType: (state, action) => {
+      state.activeType = action.payload;
     },
-    decrement: (state) => {
-      state.value -= 1;
+    changeSortOrder: (state) => {
+      if (state.sortOrder === "asc") {
+        state.sortOrder = "desc";
+      } else {
+        state.sortOrder = "asc";
+      }
     },
-    incrementByAmount: (state, action) => {
-      state.value += action.payload;
+    changePage: (state, action) => {
+      state.currentPage = action.payload;
     },
   },
 });
 
-export const { increment, decrement, incrementByAmount, changeCategory } =
-  filterSlice.actions;
+export const {
+  changeCategory,
+  changeSortingType,
+  changeSortOrder,
+  changePage,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;

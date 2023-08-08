@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useSelector } from "react-redux";
 import Categories from "../components/Categories";
 import Sorting from "../components/Sorting";
@@ -11,10 +12,10 @@ const Home = () => {
   const { searchValue } = React.useContext(SearchContext);
   const [menu, setMenu] = React.useState([]);
   const activeCategory = useSelector((state) => state.filter.activeCategory);
-  const selectedSort = useSelector((state) => state.sorting.activeType);
-  const sortOrder = useSelector((state) => state.sorting.sortOrder);
+  const selectedSort = useSelector((state) => state.filter.activeType);
+  const sortOrder = useSelector((state) => state.filter.sortOrder);
+  const currentPage = useSelector((state) => state.filter.currentPage);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [currentPage, setCurrentPage] = React.useState(1);
   React.useEffect(() => {
     setIsLoading(true);
     let baseUrl = `https://64cb863e700d50e3c7060c63.mockapi.io/items?page=${currentPage}&limit=6&sortBy=${selectedSort.property}&order=${sortOrder}`;
@@ -25,14 +26,10 @@ const Home = () => {
       baseUrl += `&search=${searchValue}`;
     }
     window.scrollTo(0, 0);
-    fetch(baseUrl)
-      .then((res) => {
-        return res.json();
-      })
-      .then((response) => {
-        setMenu(response);
-        setIsLoading(false);
-      });
+    axios.get(baseUrl).then((res) => {
+      setMenu(res.data);
+      setIsLoading(false);
+    });
   }, [activeCategory, selectedSort, sortOrder, searchValue, currentPage]);
   // const filtredMenu = menu.filter((elem) => {
   //   if (elem.title.toLowerCase().includes(searchValue.toLowerCase())) {
@@ -61,7 +58,7 @@ const Home = () => {
               />
             ))}
       </div>
-      <Pagination changePage={(number) => setCurrentPage(number)} />
+      <Pagination />
     </>
   );
 };

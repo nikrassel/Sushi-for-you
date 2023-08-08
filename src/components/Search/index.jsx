@@ -1,9 +1,28 @@
 import React from "react";
+import debounce from "lodash.debounce";
 import styles from "./Search.module.scss";
 import { SearchContext } from "../../App";
 
 const Search = () => {
+  const [value, setValue] = React.useState("");
   const { searchValue, setSearchValue } = React.useContext(SearchContext);
+  const inputRef = React.useRef();
+  const updateSearchValue = React.useMemo(
+    () =>
+      debounce((value) => {
+        setSearchValue(value);
+      }, 500),
+    [setSearchValue]
+  );
+  function changeInput(value) {
+    setValue(value);
+    updateSearchValue(value);
+  }
+  function onClearInput() {
+    setValue("");
+    setSearchValue("");
+    inputRef.current.focus();
+  }
   return (
     <div className={styles.root}>
       <svg
@@ -39,10 +58,11 @@ const Search = () => {
         />
       </svg>
       <input
+        ref={inputRef}
         className={styles.input}
         placeholder="Поиск..."
-        value={searchValue}
-        onChange={(event) => setSearchValue(event.target.value)}
+        value={value}
+        onChange={(event) => changeInput(event.target.value)}
       />
       {searchValue && (
         <svg
@@ -51,7 +71,7 @@ const Search = () => {
           viewBox="0 0 48 48"
           width="48"
           xmlns="http://www.w3.org/2000/svg"
-          onClick={() => setSearchValue("")}
+          onClick={() => onClearInput()}
         >
           <path d="M38 12.83l-2.83-2.83-11.17 11.17-11.17-11.17-2.83 2.83 11.17 11.17-11.17 11.17 2.83 2.83 11.17-11.17 11.17 11.17 2.83-2.83-11.17-11.17z" />
           <path d="M0 0h48v48h-48z" fill="none" />

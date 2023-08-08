@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import filterSlice from "./filterSlice";
-import sortSlice from "./sortSlice";
+import filter from "./filterSlice";
 
 export const store = configureStore({
   reducer: {
-    filter: filterSlice,
-    sorting: sortSlice,
+    filter,
   },
 });

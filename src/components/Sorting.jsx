@@ -1,12 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSortingType, changeSortOrder } from "../redux/sortSlice";
+import { changeSortingType, changeSortOrder } from "../redux/filterSlice";
 
 const Sorting = () => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-  const sortTypes = useSelector((state) => state.sorting.allTypes);
-  const activeType = useSelector((state) => state.sorting.activeType);
+  const sortTypes = useSelector((state) => state.filter.allTypes);
+  const activeType = useSelector((state) => state.filter.activeType);
   function changeSort(type) {
     dispatch(changeSortingType(type));
     setOpen(false);
