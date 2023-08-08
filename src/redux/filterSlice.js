@@ -43,6 +43,15 @@ export const filterSlice = createSlice({
     changePage: (state, action) => {
       state.currentPage = action.payload;
     },
+    setParams: (state, action) => {
+      state.activeCategory = initialState.allCategories.find((category) => {
+        return category.id === Number(action.payload.categoryId);
+      });
+      state.activeType = initialState.allTypes.find((type) => {
+        return type.property === action.payload.sortProperty;
+      });
+      state.currentPage = Number(action.payload.currentPage);
+    },
   },
 });
 
@@ -51,6 +60,7 @@ export const {
   changeSortingType,
   changeSortOrder,
   changePage,
+  setParams,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
