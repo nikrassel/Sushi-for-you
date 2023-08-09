@@ -4,6 +4,7 @@ import { changeSortingType, changeSortOrder } from "../redux/filterSlice";
 
 const Sorting = () => {
   const dispatch = useDispatch();
+  const sortRef = React.useRef();
   const [open, setOpen] = React.useState(false);
   const sortTypes = useSelector((state) => state.filter.allTypes);
   const activeType = useSelector((state) => state.filter.activeType);
@@ -11,8 +12,20 @@ const Sorting = () => {
     dispatch(changeSortingType(type));
     setOpen(false);
   }
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      const path = event.composedPath();
+      if (!path.includes(sortRef.current)) {
+        setOpen(false);
+      }
+    };
+    document.body.addEventListener("click", handleClickOutside);
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg
           width="10"

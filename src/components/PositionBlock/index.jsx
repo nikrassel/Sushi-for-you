@@ -1,12 +1,34 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addItem } from "../../redux/cartSlice";
 
-const PositionBlock = ({ title, price, imageSource, types, numberVars }) => {
-  const [count, setCount] = useState(0);
+const PositionBlock = ({
+  id,
+  title,
+  price,
+  imageSource,
+  types,
+  numberVars,
+}) => {
+  const dispatch = useDispatch();
+  const cartItem = useSelector((state) =>
+    state.cart.items.find((obj) => obj.id === id)
+  );
+  // const [count, setCount] = useState(0);
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
   const typeNames = ["стандартный", "острый"];
   function addCount() {
-    setCount(count + 1);
+    const item = {
+      id,
+      title,
+      price,
+      imageSource,
+      type: typeNames[activeType],
+      size: numberVars ? numberVars[activeSize] : 1,
+      count: 1,
+    };
+    dispatch(addItem(item));
   }
   return (
     <div className="dish-block-wrapper">
@@ -58,7 +80,7 @@ const PositionBlock = ({ title, price, imageSource, types, numberVars }) => {
               />
             </svg>
             <span>Добавить</span>
-            <i>{count}</i>
+            {cartItem && <i>{cartItem.count}</i>}
           </button>
         </div>
       </div>{" "}

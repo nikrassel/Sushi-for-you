@@ -23,7 +23,7 @@ const Home = () => {
   const sortOrder = useSelector((state) => state.filter.sortOrder);
   const currentPage = useSelector((state) => state.filter.currentPage);
   const [isLoading, setIsLoading] = React.useState(true);
-  function getMenu() {
+  const getMenu = React.useCallback(() => {
     setIsLoading(true);
     let baseUrl = `https://64cb863e700d50e3c7060c63.mockapi.io/items?page=${currentPage}&limit=6&sortBy=${selectedSort.property}&order=${sortOrder}`;
     if (activeCategory.id > 0) {
@@ -36,7 +36,21 @@ const Home = () => {
       setMenu(res.data);
       setIsLoading(false);
     });
-  }
+  }, [activeCategory, currentPage, searchValue, selectedSort, sortOrder]);
+  // function getMenu() {
+  //   setIsLoading(true);
+  //   let baseUrl = `https://64cb863e700d50e3c7060c63.mockapi.io/items?page=${currentPage}&limit=6&sortBy=${selectedSort.property}&order=${sortOrder}`;
+  //   if (activeCategory.id > 0) {
+  //     baseUrl += `&category=${activeCategory.name}`;
+  //   }
+  //   if (searchValue) {
+  //     baseUrl += `&search=${searchValue}`;
+  //   }
+  //   axios.get(baseUrl).then((res) => {
+  //     setMenu(res.data);
+  //     setIsLoading(false);
+  //   });
+  // }
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
@@ -61,7 +75,14 @@ const Home = () => {
       getMenu();
     }
     isSearch.current = false;
-  }, [activeCategory, selectedSort, sortOrder, searchValue, currentPage]);
+  }, [
+    activeCategory,
+    selectedSort,
+    sortOrder,
+    searchValue,
+    currentPage,
+    getMenu,
+  ]);
   // const filtredMenu = menu.filter((elem) => {
   //   if (elem.title.toLowerCase().includes(searchValue.toLowerCase())) {
   //     return true;
@@ -80,6 +101,7 @@ const Home = () => {
           ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
           : menu.map((elem) => (
               <PositionBlock
+                id={elem.id}
                 title={elem.title}
                 price={elem.price}
                 imageSource={elem.image}
