@@ -3,10 +3,10 @@ import { useSelector } from "react-redux";
 import shopLogo from "../assets/img/shop_logo.jpg";
 import { Link } from "react-router-dom";
 import Search from "./Search";
+import { selectCart } from "../redux/cartSlice";
 
 const Header = () => {
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
-  const currentCart = useSelector((state) => state.cart.items);
+  const { totalPrice, items } = useSelector(selectCart);
   return (
     <div className="header">
       <div className="container">
@@ -54,8 +54,8 @@ const Header = () => {
               />
             </svg>
             <span>
-              {currentCart
-                ? currentCart.reduce((acc, elem) => {
+              {items
+                ? items.reduce((acc, elem) => {
                     return (acc += elem.count);
                   }, 0)
                 : 0}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem } from "../../redux/cartSlice";
+import { addItem, selectItemById } from "../../redux/cartSlice";
 
 const PositionBlock = ({
   id,
@@ -11,10 +11,7 @@ const PositionBlock = ({
   numberVars,
 }) => {
   const dispatch = useDispatch();
-  const cartItem = useSelector((state) =>
-    state.cart.items.find((obj) => obj.id === id)
-  );
-  // const [count, setCount] = useState(0);
+  const cartItem = useSelector(selectItemById(id));
   const [activeType, setActiveType] = useState(0);
   const [activeSize, setActiveSize] = useState(0);
   const typeNames = ["стандартный", "острый"];

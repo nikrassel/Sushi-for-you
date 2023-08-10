@@ -45,4 +45,6 @@ export const menuSlice = createSlice({
 
 export const { clearItems, setItems } = menuSlice.actions;
 
+export const selectMenu = (state) => state.menu;
+
 export default menuSlice.reducer;

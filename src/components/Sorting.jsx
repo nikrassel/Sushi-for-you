@@ -1,13 +1,16 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeSortingType, changeSortOrder } from "../redux/filterSlice";
+import {
+  changeSortingType,
+  changeSortOrder,
+  selectFilter,
+} from "../redux/filterSlice";
 
 const Sorting = () => {
   const dispatch = useDispatch();
   const sortRef = React.useRef();
   const [open, setOpen] = React.useState(false);
-  const sortTypes = useSelector((state) => state.filter.allTypes);
-  const activeType = useSelector((state) => state.filter.activeSortType);
+  const { sortTypes, activeSortType } = useSelector(selectFilter);
   function changeSort(type) {
     dispatch(changeSortingType(type));
     setOpen(false);
@@ -42,7 +45,7 @@ const Sorting = () => {
           />
         </svg>
         <b>Сортировка по:</b>
-        <span onClick={() => setOpen(!open)}>{activeType.title}</span>
+        <span onClick={() => setOpen(!open)}>{activeSortType.title}</span>
       </div>
       {open && (
         <div className="sort__popup">
@@ -50,7 +53,7 @@ const Sorting = () => {
             {sortTypes.map((type, i) => (
               <li
                 className={
-                  activeType.property === type.property ? "active" : ""
+                  activeSortType.property === type.property ? "active" : ""
                 }
                 onClick={() => changeSort(type)}
                 key={i}

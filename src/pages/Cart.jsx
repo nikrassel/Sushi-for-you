@@ -2,20 +2,19 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import CartItem from "../components/CartItem";
-import { clearItems } from "../redux/cartSlice";
+import { clearItems, selectCart } from "../redux/cartSlice";
 import EmptyCart from "../components/EmptyCart";
-// import userCart from "../assets/userCart.json";
+// import items from "../assets/items.json";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const userCart = useSelector((state) => state.cart.items);
-  const totalPrice = useSelector((state) => state.cart.totalPrice);
+  const { items, totalPrice } = useSelector(selectCart);
   function onClear() {
     if (window.confirm("Вы действительно хотите очистить корзину?")) {
       dispatch(clearItems());
     }
   }
-  if (userCart.length === 0) {
+  if (items.length === 0) {
     return <EmptyCart />;
   }
   return (
@@ -96,7 +95,7 @@ const Cart = () => {
           </div>
         </div>
         <div className="content__items">
-          {userCart.map((elem) => (
+          {items.map((elem) => (
             <CartItem {...elem} key={elem.id} />
           ))}
         </div>
@@ -106,7 +105,7 @@ const Cart = () => {
               {" "}
               Всего товаров:{" "}
               <b>
-                {userCart.reduce((acc, elem) => {
+                {items.reduce((acc, elem) => {
                   return (acc += elem.count);
                 }, 0)}{" "}
                 шт.

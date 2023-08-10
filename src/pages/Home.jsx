@@ -7,19 +7,22 @@ import Sorting from "../components/Sorting";
 import PositionBlock from "../components/PositionBlock";
 import Skeleton from "../components/PositionBlock/skeleton";
 import Pagination from "../components/Pagination";
-import { SearchContext } from "../App";
-import { setParams } from "../redux/filterSlice";
-import { fetchMenu } from "../redux/menuSlice";
+import { selectFilter, setParams } from "../redux/filterSlice";
+import { fetchMenu, selectMenu } from "../redux/menuSlice";
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
-  const { searchValue } = React.useContext(SearchContext);
-  const { items, loading } = useSelector((state) => state.menu);
-  const { activeCategory, activeSortType, sortOrder, currentPage } =
-    useSelector((state) => state.filter);
+  const { items, loading } = useSelector(selectMenu);
+  const {
+    activeCategory,
+    activeSortType,
+    sortOrder,
+    currentPage,
+    searchValue,
+  } = useSelector(selectFilter);
   const getMenu = React.useCallback(async () => {
     let endpoint = `page=${currentPage}&limit=6&sortBy=${activeSortType.property}&order=${sortOrder}`;
     if (activeCategory.id > 0) {
