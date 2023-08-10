@@ -14,7 +14,7 @@ const initialState = {
     title: "алфавиту",
     property: "title",
   },
-  allTypes: [
+  sortTypes: [
     { title: "популярности", property: "rating" },
     { title: "цене", property: "price" },
     { title: "алфавиту", property: "title" },
@@ -48,7 +48,7 @@ export const filterSlice = createSlice({
       state.activeCategory = initialState.allCategories.find((category) => {
         return category.id === Number(action.payload.categoryId);
       });
-      state.activeSortType = initialState.allTypes.find((type) => {
+      state.activeSortType = initialState.sortTypes.find((type) => {
         return type.property === action.payload.sortProperty;
       });
       state.currentPage = Number(action.payload.currentPage);

@@ -95,11 +95,11 @@ const Home = () => {
           ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
           : items.map((elem) => (
               <PositionBlock
+                key={elem.id}
                 id={elem.id}
                 title={elem.title}
                 price={elem.price}
                 imageSource={elem.image}
-                key={elem.id}
                 numberVars={elem.number ? elem.number : undefined}
                 types={elem.types}
               />

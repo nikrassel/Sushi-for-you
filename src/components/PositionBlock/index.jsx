@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addItem, selectItemById } from "../../redux/cartSlice";
 
@@ -30,8 +31,10 @@ const PositionBlock = ({
   return (
     <div className="dish-block-wrapper">
       <div className="dish-block">
-        <img className="dish-block__image" src={imageSource} alt="dish" />
-        <h4 className="dish-block__title">{title}</h4>
+        <Link to={`/item/${id}`}>
+          <img className="dish-block__image" src={imageSource} alt="dish" />
+          <h4 className="dish-block__title">{title}</h4>
+        </Link>
         <div className="dish-block__selector">
           <ul>
             {types.map((type) => (
