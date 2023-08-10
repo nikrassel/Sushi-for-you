@@ -7,7 +7,7 @@ const Sorting = () => {
   const sortRef = React.useRef();
   const [open, setOpen] = React.useState(false);
   const sortTypes = useSelector((state) => state.filter.allTypes);
-  const activeType = useSelector((state) => state.filter.activeType);
+  const activeType = useSelector((state) => state.filter.activeSortType);
   function changeSort(type) {
     dispatch(changeSortingType(type));
     setOpen(false);

@@ -10,7 +10,7 @@ const initialState = {
     { name: "Запечёные", id: 4 },
     { name: "Наборы", id: 5 },
   ],
-  activeType: {
+  activeSortType: {
     title: "алфавиту",
     property: "title",
   },
@@ -31,7 +31,7 @@ export const filterSlice = createSlice({
       state.activeCategory = action.payload;
     },
     changeSortingType: (state, action) => {
-      state.activeType = action.payload;
+      state.activeSortType = action.payload;
     },
     changeSortOrder: (state) => {
       if (state.sortOrder === "asc") {
@@ -47,7 +47,7 @@ export const filterSlice = createSlice({
       state.activeCategory = initialState.allCategories.find((category) => {
         return category.id === Number(action.payload.categoryId);
       });
-      state.activeType = initialState.allTypes.find((type) => {
+      state.activeSortType = initialState.allTypes.find((type) => {
         return type.property === action.payload.sortProperty;
       });
       state.currentPage = Number(action.payload.currentPage);
