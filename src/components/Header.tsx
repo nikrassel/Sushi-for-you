@@ -57,7 +57,7 @@ const Header = () => {
               </svg>
               <span>
                 {items
-                  ? items.reduce((acc, elem) => {
+                  ? items.reduce((acc: number, elem: any) => {
                       return (acc += elem.count);
                     }, 0)
                   : 0}

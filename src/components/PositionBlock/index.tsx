@@ -1,9 +1,18 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, selectItemById } from "../../redux/cartSlice";
+import { CartItem, addItem, selectItemById } from "../../redux/cartSlice";
 
-const PositionBlock = ({
+type PositionBlockProps = {
+  id: string;
+  title: string;
+  price: number;
+  imageSource: string;
+  types: number[];
+  numberVars: number[];
+};
+
+const PositionBlock: React.FC<PositionBlockProps> = ({
   id,
   title,
   price,
@@ -17,7 +26,7 @@ const PositionBlock = ({
   const [activeSize, setActiveSize] = useState(0);
   const typeNames = ["стандартный", "острый"];
   function addCount() {
-    const item = {
+    const item: CartItem = {
       id,
       title,
       price,

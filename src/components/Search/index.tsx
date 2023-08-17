@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+// @ts-ignore
 import debounce from "lodash.debounce";
 import styles from "./Search.module.scss";
 import { selectFilter, setSearchValue } from "../../redux/filterSlice";
@@ -8,22 +9,22 @@ const Search = () => {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState("");
   const { searchValue } = useSelector(selectFilter);
-  const inputRef = React.useRef();
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const updateSearchValue = React.useMemo(
     () =>
-      debounce((value) => {
+      debounce((value: string) => {
         dispatch(setSearchValue(value));
       }, 500),
     [dispatch]
   );
-  function changeInput(value) {
+  function changeInput(value: string) {
     setValue(value);
     updateSearchValue(value);
   }
   function onClearInput() {
     setValue("");
     dispatch(setSearchValue(""));
-    inputRef.current.focus();
+    inputRef.current?.focus();
   }
   return (
     <div className={styles.root}>

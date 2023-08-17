@@ -10,6 +10,7 @@ const ItemDetails = () => {
   const { items } = useSelector(selectMenu);
   const getItem = React.useCallback(async () => {
     try {
+      // @ts-ignore
       dispatch(fetchMenu(`id=${id}`));
     } catch (error) {
       console.log("ERROR", error);

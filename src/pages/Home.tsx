@@ -1,6 +1,6 @@
 import React from "react";
 import qs from "qs";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Categories from "../components/Categories";
 import Sorting from "../components/Sorting";
@@ -9,10 +9,16 @@ import Skeleton from "../components/PositionBlock/skeleton";
 import Pagination from "../components/Pagination";
 import { selectFilter, setParams } from "../redux/filterSlice";
 import { fetchMenu, selectMenu } from "../redux/menuSlice";
+import { useAppDispatch } from "../redux/store";
 
 const Home = () => {
+  type SearchParams = {
+    categoryId: string;
+    currentPage: string;
+    sortProperty: string;
+  };
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
   const { items, loading } = useSelector(selectMenu);
@@ -47,7 +53,9 @@ const Home = () => {
   ]);
   React.useEffect(() => {
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
+      const params = qs.parse(
+        window.location.search.substring(1)
+      ) as unknown as SearchParams;
       dispatch(setParams({ ...params }));
       isSearch.current = true;
     }
@@ -77,12 +85,6 @@ const Home = () => {
     currentPage,
     getMenu,
   ]);
-  // const filtredMenu = menu.filter((elem) => {
-  //   if (elem.title.toLowerCase().includes(searchValue.toLowerCase())) {
-  //     return true;
-  //   }
-  //   return false;
-  // });
   return (
     <>
       <div className="content__top">
@@ -93,7 +95,7 @@ const Home = () => {
       <div className="content__items">
         {loading
           ? [...new Array(6)].map((_, index) => <Skeleton key={index} />)
-          : items.map((elem) => (
+          : items.map((elem: any) => (
               <PositionBlock
                 key={elem.id}
                 id={elem.id}

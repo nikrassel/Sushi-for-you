@@ -4,9 +4,17 @@ import { Link } from "react-router-dom";
 import CartItem from "../components/CartItem";
 import { clearItems, selectCart } from "../redux/cartSlice";
 import EmptyCart from "../components/EmptyCart";
-// import items from "../assets/items.json";
 
 const Cart = () => {
+  type Item = {
+    id: string;
+    title: string;
+    price: number;
+    imageSource: string;
+    type: string;
+    size: number;
+    count: number;
+  };
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector(selectCart);
   function onClear() {
@@ -95,7 +103,7 @@ const Cart = () => {
           </div>
         </div>
         <div className="content__items">
-          {items.map((elem) => (
+          {items.map((elem: Item) => (
             <CartItem {...elem} key={elem.id} />
           ))}
         </div>
@@ -105,7 +113,7 @@ const Cart = () => {
               {" "}
               Всего товаров:{" "}
               <b>
-                {items.reduce((acc, elem) => {
+                {items.reduce((acc: number, elem: Item) => {
                   return (acc += elem.count);
                 }, 0)}{" "}
                 шт.

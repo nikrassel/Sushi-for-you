@@ -7,18 +7,22 @@ import {
 } from "../redux/filterSlice";
 
 const Sorting = () => {
+  type SortItem = {
+    title: string;
+    property: string;
+  };
   const dispatch = useDispatch();
-  const sortRef = React.useRef();
+  const sortRef = React.useRef<HTMLDivElement>(null);
   const [open, setOpen] = React.useState(false);
   const { sortTypes, activeSortType } = useSelector(selectFilter);
-  function changeSort(type) {
+  function changeSort(type: SortItem) {
     dispatch(changeSortingType(type));
     setOpen(false);
   }
   React.useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: MouseEvent) => {
       const path = event.composedPath();
-      if (!path.includes(sortRef.current)) {
+      if (sortRef.current && !path.includes(sortRef.current)) {
         setOpen(false);
       }
     };
@@ -50,7 +54,7 @@ const Sorting = () => {
       {open && (
         <div className="sort__popup">
           <ul>
-            {sortTypes.map((type, i) => (
+            {sortTypes.map((type: SortItem, i: number) => (
               <li
                 className={
                   activeSortType.property === type.property ? "active" : ""
