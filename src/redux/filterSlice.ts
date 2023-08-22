@@ -1,25 +1,7 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-
-type Category = {
-  name: string;
-  id: number;
-};
-
-type SortType = {
-  title: string;
-  property: string;
-};
-
-interface IFilterSliceState {
-  activeCategory: Category;
-  allCategories: Category[];
-  activeSortType: SortType;
-  sortTypes: SortType[];
-  sortOrder: "asc" | "desc";
-  currentPage: number;
-  searchValue: string;
-}
+import { IFilterSliceState } from "./types";
+import { SearchParams, SortType, TCategory } from "../models";
 
 const initialState: IFilterSliceState = {
   activeCategory: { name: "Все", id: 0 },
@@ -49,7 +31,7 @@ export const filterSlice = createSlice({
   name: "filter",
   initialState,
   reducers: {
-    changeCategory: (state, action: PayloadAction<Category>) => {
+    changeCategory: (state, action: PayloadAction<TCategory>) => {
       state.activeCategory = action.payload;
     },
     changeSortingType: (state, action: PayloadAction<SortType>) => {
@@ -65,19 +47,11 @@ export const filterSlice = createSlice({
     changePage: (state, action: PayloadAction<number>) => {
       state.currentPage = action.payload;
     },
-    setParams: (
-      state,
-      action: PayloadAction<{
-        categoryId: string;
-        sortProperty: string;
-        currentPage: string;
-      }>
-    ) => {
-      const newCategory: Category | undefined = initialState.allCategories.find(
-        (category) => {
+    setParams: (state, action: PayloadAction<SearchParams>) => {
+      const newCategory: TCategory | undefined =
+        initialState.allCategories.find((category) => {
           return category.id === Number(action.payload.categoryId);
-        }
-      );
+        });
       if (newCategory) {
         state.activeCategory = newCategory;
       }

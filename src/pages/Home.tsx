@@ -10,13 +10,9 @@ import Pagination from "../components/Pagination";
 import { selectFilter, setParams } from "../redux/filterSlice";
 import { fetchMenu, selectMenu } from "../redux/menuSlice";
 import { useAppDispatch } from "../redux/store";
+import { SearchParams } from "../models";
 
 const Home = () => {
-  type SearchParams = {
-    categoryId: string;
-    currentPage: string;
-    sortProperty: string;
-  };
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const isSearch = React.useRef(false);

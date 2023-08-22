@@ -1,16 +1,16 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { fetchMenu, selectMenu } from "../redux/menuSlice";
+import { useAppDispatch } from "../redux/store";
 
 const ItemDetails = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { id } = useParams();
   const { items } = useSelector(selectMenu);
   const getItem = React.useCallback(async () => {
     try {
-      // @ts-ignore
       dispatch(fetchMenu(`id=${id}`));
     } catch (error) {
       console.log("ERROR", error);

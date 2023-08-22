@@ -1,20 +1,12 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import CartItem from "../components/CartItem";
+import CartItem from "../components/Cart/CartItem";
 import { clearItems, selectCart } from "../redux/cartSlice";
-import EmptyCart from "../components/EmptyCart";
+import EmptyCart from "../components/Cart/EmptyCart";
+import { TCartItem } from "../models";
 
 const Cart = () => {
-  type Item = {
-    id: string;
-    title: string;
-    price: number;
-    imageSource: string;
-    type: string;
-    size: number;
-    count: number;
-  };
   const dispatch = useDispatch();
   const { items, totalPrice } = useSelector(selectCart);
   function onClear() {
@@ -103,7 +95,7 @@ const Cart = () => {
           </div>
         </div>
         <div className="content__items">
-          {items.map((elem: Item) => (
+          {items.map((elem: TCartItem) => (
             <CartItem {...elem} key={elem.id} />
           ))}
         </div>
@@ -113,7 +105,7 @@ const Cart = () => {
               {" "}
               Всего товаров:{" "}
               <b>
-                {items.reduce((acc: number, elem: Item) => {
+                {items.reduce((acc: number, elem: TCartItem) => {
                   return (acc += elem.count);
                 }, 0)}{" "}
                 шт.

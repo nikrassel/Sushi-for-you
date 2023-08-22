@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CartItem, addItem, selectItemById } from "../../redux/cartSlice";
+import { addItem, selectItemById } from "../../redux/cartSlice";
+import { TCartItem } from "../../models";
 
 type PositionBlockProps = {
   id: string;
@@ -26,7 +27,7 @@ const PositionBlock: React.FC<PositionBlockProps> = ({
   const [activeSize, setActiveSize] = useState(0);
   const typeNames = ["стандартный", "острый"];
   function addCount() {
-    const item: CartItem = {
+    const item: TCartItem = {
       id,
       title,
       price,

@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { RootState } from "./store";
+import { IMenuSliceState } from "./types";
+import { MenuItem } from "../models";
 
 export const fetchMenu = createAsyncThunk(
   "menu/fetchItems",
@@ -10,22 +12,6 @@ export const fetchMenu = createAsyncThunk(
     return res.data as MenuItem[];
   }
 );
-
-type MenuItem = {
-  id: string;
-  title: string;
-  price: number;
-  image: string;
-  types: number[];
-  number: number[];
-  category: string[];
-  rating: number;
-};
-
-interface IMenuSliceState {
-  items: MenuItem[];
-  loading: boolean;
-}
 
 const initialState: IMenuSliceState = {
   items: [],

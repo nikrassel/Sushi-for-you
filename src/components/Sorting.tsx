@@ -5,17 +5,14 @@ import {
   changeSortOrder,
   selectFilter,
 } from "../redux/filterSlice";
+import { SortType } from "../models";
 
 const Sorting = () => {
-  type SortItem = {
-    title: string;
-    property: string;
-  };
   const dispatch = useDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
   const [open, setOpen] = React.useState(false);
   const { sortTypes, activeSortType } = useSelector(selectFilter);
-  function changeSort(type: SortItem) {
+  function changeSort(type: SortType) {
     dispatch(changeSortingType(type));
     setOpen(false);
   }
@@ -54,7 +51,7 @@ const Sorting = () => {
       {open && (
         <div className="sort__popup">
           <ul>
-            {sortTypes.map((type: SortItem, i: number) => (
+            {sortTypes.map((type: SortType, i: number) => (
               <li
                 className={
                   activeSortType.property === type.property ? "active" : ""
