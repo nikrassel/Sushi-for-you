@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { addItem, selectItemById } from "../../redux/cartSlice";
+import { addItem } from "../../redux/cart/slice";
+import { selectItemById } from "../../redux/cart/selectors";
 import { TCartItem } from "../../models";
 
 type PositionBlockProps = {

@@ -1,11 +1,14 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { RootState } from "./store";
 import { ICartSliceState } from "./types";
-import { TCartItem } from "../models";
+import { TCartItem } from "../../models";
+import { getCartFromLS } from "../../utils/getCartFromLS";
+import { calcTotalPrice } from "../../utils/calcTotalPrice";
+
+const { items, totalPrice } = getCartFromLS();
 
 const initialState: ICartSliceState = {
-  totalPrice: 0,
-  items: [],
+  totalPrice,
+  items,
 };
 
 export const cartSlice = createSlice({
@@ -19,9 +22,7 @@ export const cartSlice = createSlice({
       } else {
         state.items.push(action.payload);
       }
-      state.totalPrice = state.items.reduce((acc, elem) => {
-        return (acc += elem.count * elem.price);
-      }, 0);
+      state.totalPrice = calcTotalPrice(state.items);
     },
     reduceItemCount(state, action: PayloadAction<string>) {
       const findItem = state.items.find((obj) => obj.id === action.payload);
@@ -30,16 +31,12 @@ export const cartSlice = createSlice({
         if (findItem.count === 0) {
           state.items = state.items.filter((obj) => obj.id !== action.payload);
         }
-        state.totalPrice = state.items.reduce((acc, elem) => {
-          return (acc += elem.count * elem.price);
-        }, 0);
+        state.totalPrice = calcTotalPrice(state.items);
       }
     },
     removeItem(state, action: PayloadAction<string>) {
       state.items = state.items.filter((obj) => obj.id !== action.payload);
-      state.totalPrice = state.items.reduce((acc, elem) => {
-        return (acc += elem.count * elem.price);
-      }, 0);
+      state.totalPrice = calcTotalPrice(state.items);
     },
     clearItems(state) {
       state.items = [];
@@ -50,9 +47,5 @@ export const cartSlice = createSlice({
 
 export const { addItem, removeItem, clearItems, reduceItemCount } =
   cartSlice.actions;
-
-export const selectCart = (state: RootState) => state.cart;
-export const selectItemById = (id: string) => (state: RootState) =>
-  state.cart.items.find((obj) => obj.id === id);
 
 export default cartSlice.reducer;

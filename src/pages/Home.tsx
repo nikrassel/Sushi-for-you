@@ -7,8 +7,10 @@ import Sorting from "../components/Sorting";
 import PositionBlock from "../components/PositionBlock";
 import Skeleton from "../components/PositionBlock/skeleton";
 import Pagination from "../components/Pagination";
-import { selectFilter, setParams } from "../redux/filterSlice";
-import { fetchMenu, selectMenu } from "../redux/menuSlice";
+import { setParams } from "../redux/filter/slice";
+import { selectFilter } from "../redux/filter/selector";
+import { fetchMenu } from "../redux/menu/asyncActions";
+import { selectMenu } from "../redux/menu/selectors";
 import { useAppDispatch } from "../redux/store";
 import { SearchParams } from "../models";
 

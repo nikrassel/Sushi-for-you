@@ -1,10 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  changeSortingType,
-  changeSortOrder,
-  selectFilter,
-} from "../redux/filterSlice";
+import { changeSortingType, changeSortOrder } from "../redux/filter/slice";
+import { selectFilter } from "../redux/filter/selector";
 import { SortType } from "../models";
 
 const Sorting = () => {

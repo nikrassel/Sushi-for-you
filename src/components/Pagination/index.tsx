@@ -2,7 +2,7 @@ import React from "react";
 import ReactPaginate from "react-paginate";
 import styles from "./Pagination.module.scss";
 import { useDispatch } from "react-redux";
-import { changePage } from "../../redux/filterSlice";
+import { changePage } from "../../redux/filter/slice";
 
 const Pagination = () => {
   const dispatch = useDispatch();

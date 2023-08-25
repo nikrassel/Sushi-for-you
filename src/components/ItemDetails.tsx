@@ -1,7 +1,8 @@
 import React from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { fetchMenu, selectMenu } from "../redux/menuSlice";
+import { fetchMenu } from "../redux/menu/asyncActions";
+import { selectMenu } from "../redux/menu/selectors";
 import { useAppDispatch } from "../redux/store";
 
 const ItemDetails = () => {

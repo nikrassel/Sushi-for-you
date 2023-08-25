@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addItem, reduceItemCount, removeItem } from "../../redux/cartSlice";
+import { addItem, reduceItemCount, removeItem } from "../../redux/cart/slice";
 import { TCartItem } from "../../models";
 
 const CartItem: React.FC<TCartItem> = ({

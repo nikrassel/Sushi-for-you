@@ -1,17 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import axios from "axios";
-import { RootState } from "./store";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IMenuSliceState } from "./types";
-import { MenuItem } from "../models";
-
-export const fetchMenu = createAsyncThunk(
-  "menu/fetchItems",
-  async (endpoint: string) => {
-    const baseUrl = "https://64cb863e700d50e3c7060c63.mockapi.io/items?";
-    const res = await axios.get(baseUrl + endpoint);
-    return res.data as MenuItem[];
-  }
-);
+import { MenuItem } from "../../models";
+import { fetchMenu } from "./asyncActions";
 
 const initialState: IMenuSliceState = {
   items: [],
@@ -47,7 +37,5 @@ export const menuSlice = createSlice({
 });
 
 export const { clearItems, setItems } = menuSlice.actions;
-
-export const selectMenu = (state: RootState) => state.menu;
 
 export default menuSlice.reducer;

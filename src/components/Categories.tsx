@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeCategory, selectFilter } from "../redux/filterSlice";
+import { changeCategory } from "../redux/filter/slice";
+import { selectFilter } from "../redux/filter/selector";
 import { TCategory } from "../models";
 
 const Categories = () => {

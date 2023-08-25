@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 // @ts-ignore
 import debounce from "lodash.debounce";
 import styles from "./Search.module.scss";
-import { selectFilter, setSearchValue } from "../../redux/filterSlice";
+import { setSearchValue } from "../../redux/filter/slice";
+import { selectFilter } from "../../redux/filter/selector";
 
 const Search = () => {
   const dispatch = useDispatch();

@@ -3,11 +3,19 @@ import { useSelector } from "react-redux";
 import shopLogo from "../assets/img/shop_logo.jpg";
 import { Link, useLocation } from "react-router-dom";
 import Search from "./Search";
-import { selectCart } from "../redux/cartSlice";
+import { selectCart } from "../redux/cart/selectors";
 
 const Header = () => {
   const { totalPrice, items } = useSelector(selectCart);
   const location = useLocation();
+  const isMounted = React.useRef(false);
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(items);
+      localStorage.setItem("cart", json);
+    }
+    isMounted.current = true;
+  }, [items]);
   return (
     <div className="header">
       <div className="container">
@@ -20,7 +28,7 @@ const Header = () => {
             </div>
           </div>
         </Link>
-        <Search />
+        {location.pathname !== "/cart" && <Search />}
         <div className="header__cart">
           {location.pathname !== "/cart" && (
             <Link to={"/cart"} className="button button--cart">
