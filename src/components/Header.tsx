@@ -23,7 +23,7 @@ const Header = () => {
           <div className="header__logo">
             <img width="38" src={shopLogo} alt="Shop logo" />
             <div>
-              <h1>Sushi For You</h1>
+              <h1>Meal For You</h1>
               <p>самые вкусные суши во вселенной</p>
             </div>
           </div>

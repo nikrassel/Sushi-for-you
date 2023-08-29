@@ -28,7 +28,7 @@ const Home = () => {
     searchValue,
   } = useSelector(selectFilter);
   const getMenu = React.useCallback(async () => {
-    let endpoint = `page=${currentPage}&limit=6&sortBy=${activeSortType.property}&order=${sortOrder}`;
+    let endpoint = `page=${currentPage}&limit=8&sortBy=${activeSortType.property}&order=${sortOrder}`;
     if (activeCategory.id > 0) {
       endpoint += `&category=${activeCategory.name}`;
     }

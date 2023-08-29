@@ -6,11 +6,11 @@ const initialState: IFilterSliceState = {
   activeCategory: { name: "Все", id: 0 },
   allCategories: [
     { name: "Все", id: 0 },
-    { name: "С лососем", id: 1 },
-    { name: "С угрём", id: 2 },
-    { name: "С креветкой", id: 3 },
-    { name: "Запечёные", id: 4 },
-    { name: "Наборы", id: 5 },
+    { name: "Гамбургеры", id: 1 },
+    { name: "Пицца", id: 2 },
+    { name: "Закуски", id: 3 },
+    { name: "Салаты", id: 4 },
+    { name: "Роллы", id: 5 },
   ],
   activeSortType: {
     title: "алфавиту",

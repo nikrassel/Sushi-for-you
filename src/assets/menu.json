@@ -1,68 +1,128 @@
 [
   {
     "id": "01",
-    "title": "Набор 'Плотный обед'",
-    "price": 1500,
+    "title": "Чизбургер",
+    "price": 100,
     "image": "/img/item_1.jpg",
-    "types": [0],
-    "category": ["Наборы"],
+    "types": [0, 1],
+    "category": ["Гамбургеры"],
     "rating": 5
   },
   {
     "id": "02",
-    "title": "Набор 'Ассортимент'",
-    "price": 1000,
+    "title": "Чикенбургер",
+    "price": 100,
     "image": "/img/item_2.jpg",
     "types": [0, 1],
-    "category": ["Наборы"],
+    "category": ["Гамбургеры"],
     "rating": 4
   },
   {
     "id": "03",
-    "title": "Филадельфия",
-    "price": 300,
+    "title": "Фрэшбургер",
+    "price": 150,
     "image": "/img/item_3.jpg",
     "types": [0, 1],
-    "number": [4, 6, 8],
-    "category": ["С лососем"],
+    "category": ["Гамбургеры"],
     "rating": 5
   },
   {
     "id": "04",
-    "title": "Эби",
-    "price": 600,
+    "title": "Блэкбургер",
+    "price": 300,
     "image": "/img/item_4.jpg",
     "types": [0, 1],
-    "number": [4, 6, 8],
-    "category": ["С креветкой"],
+    "category": ["Гамбургеры"],
     "rating": 5
   },
   {
     "id": "05",
-    "title": "Малый дракон",
-    "price": 500,
+    "title": "Цыпленок с грибами",
+    "price": 600,
     "image": "/img/item_5.jpg",
     "types": [0, 1],
-    "number": [4, 6, 8],
-    "category": ["С угрем"],
+    "category": ["Пицца"],
     "rating": 5
   },
   {
     "id": "06",
-    "title": "Чаепитие в Филадельфии",
-    "price": 2000,
+    "title": "Пикантная",
+    "price": 650,
     "image": "/img/item_6.jpg",
     "types": [0],
-    "category": ["Наборы"],
-    "rating": 4
+    "category": ["Пицца"],
+    "rating": 5
   },
   {
     "id": "07",
-    "title": "Темпура",
-    "price": 450,
+    "title": "Сырная",
+    "price": 500,
     "image": "/img/item_7.jpg",
     "types": [0, 1],
-    "category": ["Запеченые"],
+    "category": ["Пицца"],
     "rating": 3
+  },
+  {
+    "id": "08",
+    "title": "Картофель фри",
+    "price": 80,
+    "image": "/img/item_8.jpg",
+    "types": [0, 1],
+    "category": ["Закуски"],
+    "rating": 5
+  },
+  {
+    "id": "09",
+    "title": "Картофель по деревенски",
+    "price": 110,
+    "image": "/img/item_9.jpg",
+    "types": [0, 1],
+    "category": ["Закуски"],
+    "rating": 5
+  },
+  {
+    "id": "10",
+    "title": "Салат Цезарь",
+    "price": 250,
+    "image": "/img/item_10.jpg",
+    "types": [0],
+    "category": ["Салаты"],
+    "rating": 4
+  },
+  {
+    "id": "11",
+    "title": "Ролл Тар-тар",
+    "price": 450,
+    "image": "/img/item_11.jpg",
+    "types": [0],
+    "category": ["Роллы"],
+    "rating": 4
+  },
+  {
+    "id": "12",
+    "title": "Ролл филадельфия",
+    "price": 600,
+    "image": "/img/item_12.jpg",
+    "types": [0],
+    "category": ["Роллы"],
+    "rating": 5
+  },
+  {
+    "id": "13",
+    "title": "Ролл вечерний",
+    "price": 560,
+    "image": "/img/item_13.jpg",
+    "types": [0],
+    "category": ["Роллы"],
+    "rating": 5
+  },
+  {
+    "id": "14",
+    "title": "Ролл полдень",
+    "price": 700,
+    "image": "/img/item_14.jpg",
+    "types": [0],
+    "category": ["Роллы"],
+    "rating": 5
   }
 ]
